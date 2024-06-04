@@ -1,7 +1,12 @@
 class Solution {
 public:
     int longestPalindrome(string s) {
-        int count[128] = {0}; // Initialize an array to count each character's frequency
+        
+        ios_base::sync_with_stdio(false); // Disable synchronization
+        cin.tie(NULL); // Untie cin from cout
+        cout.tie(NULL); // Untie cout from cin
+        
+        int count[128] = {0};
         
         for(char c : s) {
             count[c]++;
