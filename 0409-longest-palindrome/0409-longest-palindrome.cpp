@@ -1,29 +1,28 @@
 class Solution {
 public:
     int longestPalindrome(string s) {
-        
-        unordered_map<char, int> mp; 
+        int count[128] = {0}; // Initialize an array to count each character's frequency
         
         for(char c : s) {
-            mp[c]++;
+            count[c]++;
         }
         
-        int count = 0;
-        bool ifSingleCharExist = false;
+        int length = 0;
+        bool hasOdd = false;
         
-        for(auto it : mp) {
-            if(it.second % 2 == 0) {
-                count += it.second; 
+        for(int i = 0; i < 128; i++) {
+            if(count[i] % 2 == 0) {
+                length += count[i];
             } else {
-                count += it.second - 1; 
-                ifSingleCharExist = true; 
+                length += count[i] - 1;
+                hasOdd = true;
             }
         }
         
-        if(ifSingleCharExist) {
-            count++; 
+        if(hasOdd) {
+            length++;
         }
         
-        return count;
+        return length;
     }
 };
