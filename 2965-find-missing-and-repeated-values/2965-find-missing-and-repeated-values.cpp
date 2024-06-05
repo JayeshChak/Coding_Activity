@@ -2,10 +2,6 @@ class Solution {
 public:
     vector<int> findMissingAndRepeatedValues(vector<vector<int>>& grid) {
         
-        ios_base :: sync_with_stdio(false);
-        cin.tie(NULL);
-        cout.tie(NULL);        
-        
         int n = grid.size(); 
         
         vector<int> frequency(n * n + 1, 0);
@@ -23,6 +19,10 @@ public:
                 result[1] = i; // Missing value
             } else if (frequency[i] == 2) {
                 result[0] = i; // Repeated value
+            }
+            
+            if (result[0] != -1 && result[1] != -1) {
+                break;
             }
         }
         
