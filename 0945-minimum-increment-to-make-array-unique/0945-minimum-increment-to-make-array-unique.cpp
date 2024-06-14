@@ -1,19 +1,29 @@
 class Solution {
 public:
     int minIncrementForUnique(vector<int>& nums) {
-        if (nums.empty()) return 0;
+        int n = nums.size();
+        int max_val = 0;
+        int minIncrements = 0;
 
-        sort(nums.begin(), nums.end());
-        int moves = 0;
-
-        for (size_t i = 1; i < nums.size(); ++i) {
-            if (nums[i] <= nums[i - 1]) {
-                int increment = nums[i - 1] - nums[i] + 1;
-                nums[i] += increment;
-                moves += increment;
-            }
+        for (int val : nums) {
+            max_val = max(max_val, val);
         }
-        
-        return moves;
+
+        vector<int> frequencyCount(n + max_val + 1, 0);
+
+        for (int val : nums) {
+            frequencyCount[val]++;
+        }
+
+        for (int i = 0; i < frequencyCount.size(); i++) {
+            if (frequencyCount[i] <= 1) continue;
+
+            int duplicates = frequencyCount[i] - 1;
+            frequencyCount[i + 1] += duplicates;
+            frequencyCount[i] = 1;
+            minIncrements += duplicates;
+        }
+
+        return minIncrements;
     }
 };
