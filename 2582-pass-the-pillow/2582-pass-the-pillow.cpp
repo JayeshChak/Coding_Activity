@@ -1,11 +1,8 @@
 class Solution {
 public:
     int passThePillow(int n, int time) {
-        int position = 1; // Initial position
-        
-        // Determine the direction and position after each second
-        bool forward = true; // Indicates the direction of the pass
-        
+        int position = 1; 
+        bool forward = true; 
         for (int i = 0; i < time; ++i) {
             if (forward) {
                 if (position < n) {
